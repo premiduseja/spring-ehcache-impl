@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1")
 public class EmployeeController {
@@ -34,6 +36,14 @@ public class EmployeeController {
     @GetMapping("/check")
     String test(){
         return "UP";
+    }
+
+    @GetMapping("/employees")
+    public HttpEntity<List<Employee>> getAllEmployees(){
+        List<Employee> employees=employeeService.getAllEmployees();
+        HttpEntity<List<Employee>> response;
+        response=new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+        return response;
     }
 
 }
