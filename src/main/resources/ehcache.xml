@@ -15,4 +15,16 @@
             <offheap unit="MB">5</offheap>
         </resources>
     </cache>
+
+    <cache alias="fullObj" >
+        <key-type>java.lang.String</key-type>
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="seconds">600</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">10</heap>
+            <offheap unit="MB">5</offheap>
+        </resources>
+    </cache>
 </config>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Service implementation and caching the response.
  */
@@ -23,5 +25,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployeeByFirstName(String firstName) {
         log.debug(">>>>>>>>>>>  Now pulling {} from database..  <<<<<<<<<<<<<<", firstName);
         return employeeRepository.getByFirstName(firstName);
+    }
+
+    @Override
+    @Cacheable(key = "'dummy'", value = "fullObj")
+    public List<Employee> getAllEmployees() {
+        log.debug("Loading all recs from DB");
+        return employeeRepository.findAll();
     }
 }
